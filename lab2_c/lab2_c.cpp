@@ -405,140 +405,140 @@ int main()
             out2.close();
 
 
-            std::ofstream out1, out2;
-            out1.open("selection_sorted_comparison.txt");
-            out2.open("selection_sorted_copy.txt");
-            if (out1.is_open() && out2.is_open())
+            std::ofstream out3, out4;
+            out3.open("selection_sorted_comparison.txt");
+            out4.open("selection_sorted_copy.txt");
+            if (out3.is_open() && out4.is_open())
             {
                 for (int i = 0; i < 13; i++)
                 {
                     stats st = selection_sorted(mass[i]);
-                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
-                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                    out3 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out4 << st.copy_count << '\t' << mass[i] << std::endl;
                 }
 
             }
-            out1.close();
-            out2.close();
+            out3.close();
+            out4.close();
 
-            std::ofstream out1, out2;
-            out1.open("selection_reverse_comparison.txt");
-            out2.open("selection_reverse_copy.txt");
-            if (out1.is_open() && out2.is_open())
+            std::ofstream out5, out6;
+            out5.open("selection_reverse_comparison.txt");
+            out6.open("selection_reverse_copy.txt");
+            if (out5.is_open() && out6.is_open())
             {
                 for (int i = 0; i < 13; i++)
                 {
                     stats st = selection_reverse(mass[i]);
-                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
-                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                    out5 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out6 << st.copy_count << '\t' << mass[i] << std::endl;
                 }
 
             }
-            out1.close();
-            out2.close();
+            out5.close();
+            out6.close();
            
 
-            std::ofstream out1, out2;
-            out1.open("shella_random_comparison.txt");
-            out2.open("shella_random_copy.txt");
-            if (out1.is_open() && out2.is_open())
+            std::ofstream out7, out8;
+            out7.open("shella_random_comparison.txt");
+            out8.open("shella_random_copy.txt");
+            if (out7.is_open() && out8.is_open())
             {
                 for (int i = 0; i < 13; i++)
                 {
                     stats st = shella_random(mass[i]);
-                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
-                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                    out7 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out8 << st.copy_count << '\t' << mass[i] << std::endl;
                 }
 
             }
-            out1.close();
-            out2.close();
+            out7.close();
+            out8.close();
 
 
-            std::ofstream out1, out2;
-            out1.open("shella_sorted_comparison.txt");
-            out2.open("shella_sorted_copy.txt");
-            if (out1.is_open() && out2.is_open())
+            std::ofstream out9, out10;
+            out9.open("shella_sorted_comparison.txt");
+            out10.open("shella_sorted_copy.txt");
+            if (out9.is_open() && out10.is_open())
             {
                 for (int i = 0; i < 13; i++)
                 {
                     stats st = shella_sorted(mass[i]);
-                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
-                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                    out9 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out10 << st.copy_count << '\t' << mass[i] << std::endl;
                 }
 
             }
-            out1.close();
-            out2.close();
+            out9.close();
+            out10.close();
 
 
-            std::ofstream out1, out2;
-            out1.open("shella_reverse_comparison.txt");
-            out2.open("shella_reverse_copy.txt");
-            if (out1.is_open() && out2.is_open())
+            std::ofstream out11, out12;
+            out11.open("shella_reverse_comparison.txt");
+            out12.open("shella_reverse_copy.txt");
+            if (out11.is_open() && out12.is_open())
             {
                 for (int i = 0; i < 13; i++)
                 {
                     stats st = shella_reverse(mass[i]);
-                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
-                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                    out11 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out12 << st.copy_count << '\t' << mass[i] << std::endl;
                 }
 
             }
-            out1.close();
-            out2.close();
+            out11.close();
+            out12.close();
 
 
 
-            std::ofstream out1, out2;
-            out1.open("heap_random_comparison.txt");
-            out2.open("heap_random_copy.txt");
-            if (out1.is_open() && out2.is_open())
+            std::ofstream out13, out14;
+            out13.open("heap_random_comparison.txt");
+            out14.open("heap_random_copy.txt");
+            if (out13.is_open() && out14.is_open())
             {
                 for (int i = 0; i < 13; i++)
                 {
                     stats st = heap_sort_random(mass[i]);
-                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
-                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                    out13 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out14 << st.copy_count << '\t' << mass[i] << std::endl;
                 }
 
             }
-            out1.close();
-            out2.close();
+            out13.close();
+            out14.close();
 
 
-            std::ofstream out1, out2;
-            out1.open("heap_sorted_comparison.txt");
-            out2.open("heap_sorted_copy.txt");
-            if (out1.is_open() && out2.is_open())
+            std::ofstream out15, out16;
+            out15.open("heap_sorted_comparison.txt");
+            out16.open("heap_sorted_copy.txt");
+            if (out15.is_open() && out16.is_open())
             {
                 for (int i = 0; i < 13; i++)
                 {
                     stats st = heap_sort_sorted(mass[i]);
-                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
-                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                    out15 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out16 << st.copy_count << '\t' << mass[i] << std::endl;
                 }
 
             }
-            out1.close();
-            out2.close();
+            out15.close();
+            out16.close();
 
 
-            std::ofstream out1, out2;
-            out1.open("heap_reverse_comparison.txt");
-            out2.open("heap_reverse_copy.txt");
-            if (out1.is_open() && out2.is_open())
+            std::ofstream out17, out18;
+            out17.open("heap_reverse_comparison.txt");
+            out18.open("heap_reverse_copy.txt");
+            if (out17.is_open() && out18.is_open())
             {
                 for (int i = 0; i < 13; i++)
                 {
                     stats st = heap_sort_reverse(mass[i]);
-                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
-                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                    out17 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out18 << st.copy_count << '\t' << mass[i] << std::endl;
                 }
 
             }
-            out1.close();
-            out2.close();
+            out17.close();
+            out18.close();
             cout << endl << "Press 'Backspace' if want to back" << endl << endl;
             choi = _getch();
         }
