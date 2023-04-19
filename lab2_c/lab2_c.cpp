@@ -9,6 +9,7 @@
 #include <chrono>
 #include <iostream>
 #include<vector>
+#include<fstream>
 
 using namespace std;
 struct stats
@@ -46,7 +47,7 @@ stats heapify(std::vector<int>::iterator it1, std::vector<int>::iterator it2, in
     flag.comparison_count++;
 	if (largest != i) 
 	{
-        flag.copy_count++;
+        flag.copy_count +=3;
 		std::swap(*(it1 + i), *(it1 + largest));
 		flag = heapify(it1, it2, largest, flag);
 	}
@@ -65,7 +66,7 @@ stats heap_sort(std::vector<int>::iterator iter1, std::vector<int>::iterator ite
 	for (int i = n; i >= 0; i--) 
 	{
         flag.comparison_count++;
-        flag.copy_count++;
+        flag.copy_count += 3;
 		std::swap(*(iter1), *(iter1 + i));
 		flag = heapify(iter1, iter1 + i, 0, flag);
 	}
@@ -91,9 +92,11 @@ stats shell_sort(std::vector<int>::iterator iter1, std::vector<int>::iterator it
 			{
                 flag.comparison_count++;
 				*(temp2) = *(temp2 - step);
+                flag.copy_count++;
 			}
             flag.comparison_count++;
 			*(temp2) = temp;
+            flag.copy_count++;
 		}
         flag.comparison_count++;
 	}
@@ -127,8 +130,8 @@ stats selection_sort(std::vector<int>:: iterator iter1, std::vector<int>::iterat
 			}
             flag.comparison_count++;
 		}
-		iter_swap(tmp, small_);
-		flag.copy_count++;
+		swap(*(tmp), *(small_));
+		flag.copy_count += 3;
 		tmp++;
 	}
     flag.comparison_count++;
@@ -384,201 +387,158 @@ int main()
         }
         else if (choice == 4)
         {
-            selection_random(1000);
-            selection_sorted(1000);
-            selection_reverse(1000);
-            cout << endl << endl;
+            std::vector<int> mass = {1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 25000, 50000, 100000};
+            std::ofstream out1, out2;
+            out1.open("selection_random_comparison.txt");   
+            out2.open("selection_random_copy.txt");
+            if (out1.is_open() && out2.is_open())
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    stats st = selection_random(mass[i]);
+                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                }
+                
+            }
+            out1.close();
+            out2.close();
 
-            shella_random(1000);
-            shella_sorted(1000);
-            shella_reverse(1000);
-            cout << endl << endl;
 
-            heap_sort_random(1000);
-            heap_sort_sorted(1000);
-            heap_sort_reverse(1000);
-            cout << endl << endl;
+            std::ofstream out1, out2;
+            out1.open("selection_sorted_comparison.txt");
+            out2.open("selection_sorted_copy.txt");
+            if (out1.is_open() && out2.is_open())
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    stats st = selection_sorted(mass[i]);
+                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                }
 
-            selection_random(2000);
-            selection_sorted(2000);
-            selection_reverse(2000);
-            cout << endl << endl;
+            }
+            out1.close();
+            out2.close();
 
-            shella_random(2000);
-            shella_sorted(2000);
-            shella_reverse(2000);
-            cout << endl << endl;
+            std::ofstream out1, out2;
+            out1.open("selection_reverse_comparison.txt");
+            out2.open("selection_reverse_copy.txt");
+            if (out1.is_open() && out2.is_open())
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    stats st = selection_reverse(mass[i]);
+                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                }
 
-            heap_sort_random(2000);
-            heap_sort_sorted(2000);
-            heap_sort_reverse(2000);
-            cout << endl << endl;
+            }
+            out1.close();
+            out2.close();
+           
 
-            selection_random(3000);
-            selection_sorted(3000);
-            selection_reverse(3000);
-            cout << endl << endl;
+            std::ofstream out1, out2;
+            out1.open("shella_random_comparison.txt");
+            out2.open("shella_random_copy.txt");
+            if (out1.is_open() && out2.is_open())
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    stats st = shella_random(mass[i]);
+                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                }
 
-            shella_random(3000);
-            shella_sorted(3000);
-            shella_reverse(3000);
-            cout << endl << endl;
+            }
+            out1.close();
+            out2.close();
 
-            heap_sort_random(3000);
-            heap_sort_sorted(3000);
-            heap_sort_reverse(3000);
-            cout << endl << endl;
 
-            selection_random(4000);
-            selection_sorted(4000);
-            selection_reverse(4000);
-            cout << endl << endl;
+            std::ofstream out1, out2;
+            out1.open("shella_sorted_comparison.txt");
+            out2.open("shella_sorted_copy.txt");
+            if (out1.is_open() && out2.is_open())
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    stats st = shella_sorted(mass[i]);
+                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                }
 
-            shella_random(4000);
-            shella_sorted(4000);
-            shella_reverse(4000);
-            cout << endl << endl;
+            }
+            out1.close();
+            out2.close();
 
-            heap_sort_random(4000);
-            heap_sort_sorted(4000);
-            heap_sort_reverse(4000);
-            cout << endl << endl;
 
-            selection_random(5000);
-            selection_sorted(5000);
-            selection_reverse(5000);
-            cout << endl << endl;
+            std::ofstream out1, out2;
+            out1.open("shella_reverse_comparison.txt");
+            out2.open("shella_reverse_copy.txt");
+            if (out1.is_open() && out2.is_open())
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    stats st = shella_reverse(mass[i]);
+                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                }
 
-            shella_random(5000);
-            shella_sorted(5000);
-            shella_reverse(5000);
-            cout << endl << endl;
+            }
+            out1.close();
+            out2.close();
 
-            heap_sort_random(5000);
-            heap_sort_sorted(5000);
-            heap_sort_reverse(5000);
-            cout << endl << endl;
 
-            selection_random(6000);
-            selection_sorted(6000);
-            selection_reverse(6000);
-            cout << endl << endl;
 
-            shella_random(6000);
-            shella_sorted(6000);
-            shella_reverse(6000);
-            cout << endl << endl;
+            std::ofstream out1, out2;
+            out1.open("heap_random_comparison.txt");
+            out2.open("heap_random_copy.txt");
+            if (out1.is_open() && out2.is_open())
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    stats st = heap_sort_random(mass[i]);
+                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                }
 
-            heap_sort_random(6000);
-            heap_sort_sorted(6000);
-            heap_sort_reverse(6000);
-            cout << endl << endl;
+            }
+            out1.close();
+            out2.close();
 
-            selection_random(7000);
-            selection_sorted(7000);
-            selection_reverse(7000);
-            cout << endl << endl;
 
-            shella_random(7000);
-            shella_sorted(7000);
-            shella_reverse(7000);
-            cout << endl << endl;
+            std::ofstream out1, out2;
+            out1.open("heap_sorted_comparison.txt");
+            out2.open("heap_sorted_copy.txt");
+            if (out1.is_open() && out2.is_open())
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    stats st = heap_sort_sorted(mass[i]);
+                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                }
 
-            heap_sort_random(7000);
-            heap_sort_sorted(7000);
-            heap_sort_reverse(7000);
-            cout << endl << endl;
+            }
+            out1.close();
+            out2.close();
 
-            selection_random(8000);
-            selection_sorted(8000);
-            selection_reverse(8000);
-            cout << endl << endl;
 
-            shella_random(8000);
-            shella_sorted(8000);
-            shella_reverse(8000);
-            cout << endl << endl;
+            std::ofstream out1, out2;
+            out1.open("heap_reverse_comparison.txt");
+            out2.open("heap_reverse_copy.txt");
+            if (out1.is_open() && out2.is_open())
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    stats st = heap_sort_reverse(mass[i]);
+                    out1 << st.comparison_count << '\t' << mass[i] << std::endl;
+                    out2 << st.copy_count << '\t' << mass[i] << std::endl;
+                }
 
-            heap_sort_random(8000);
-            heap_sort_sorted(8000);
-            heap_sort_reverse(8000);
-            cout << endl << endl;
-
-            selection_random(9000);
-            selection_sorted(9000);
-            selection_reverse(9000);
-            cout << endl << endl;
-
-            shella_random(9000);
-            shella_sorted(9000);
-            shella_reverse(9000);
-            cout << endl << endl;
-
-            heap_sort_random(9000);
-            heap_sort_sorted(9000);
-            heap_sort_reverse(9000);
-            cout << endl << endl;
-
-            selection_random(10000);
-            selection_sorted(10000);
-            selection_reverse(10000);
-            cout << endl << endl;
-
-            shella_random(10000);
-            shella_sorted(10000);
-            shella_reverse(10000);
-            cout << endl << endl;
-
-            heap_sort_random(10000);
-            heap_sort_sorted(10000);
-            heap_sort_reverse(10000);
-            cout << endl << endl;
-
-            selection_random(25000);
-            selection_sorted(25000);
-            selection_reverse(25000);
-            cout << endl << endl;
-
-            shella_random(25000);
-            shella_sorted(25000);
-            shella_reverse(25000);
-            cout << endl << endl;
-
-            heap_sort_random(25000);
-            heap_sort_sorted(25000);
-            heap_sort_reverse(25000);
-            cout << endl << endl;
-
-            selection_random(50000);
-            selection_sorted(50000);
-            selection_reverse(50000);
-            cout << endl << endl;
-
-            shella_random(50000);
-            shella_sorted(50000);
-            shella_reverse(50000);
-            cout << endl << endl;
-
-            heap_sort_random(50000);
-            heap_sort_sorted(50000);
-            heap_sort_reverse(50000);
-            cout << endl << endl;
-
-            selection_random(100000);
-            selection_sorted(100000);
-            selection_reverse(100000);
-            cout << endl << endl;
-
-            shella_random(100000);
-            shella_sorted(100000);
-            shella_reverse(100000);
-            cout << endl << endl;
-
-            heap_sort_random(100000);
-            heap_sort_sorted(100000);
-            heap_sort_reverse(100000);
-            cout << endl << endl;
-
+            }
+            out1.close();
+            out2.close();
             cout << endl << "Press 'Backspace' if want to back" << endl << endl;
             choi = _getch();
         }
